@@ -16,7 +16,10 @@ class SelfCheckAPIPrompt:
         api_key = None,
     ):
         if client_type == "openai":
-            self.client = OpenAI()
+            self.client=OpenAI(
+                base_url=base_url,
+                api_key=api_key,
+            )
             print("Initiate OpenAI client... model = {}".format(model)) 
         elif client_type == "groq":
             self.client = Groq(api_key=api_key)
@@ -35,22 +38,38 @@ class SelfCheckAPIPrompt:
 
     def set_prompt_template(self, prompt_template: str):
         self.prompt_template = prompt_template
-
-    def completion(self, prompt: str):
-        if self.client_type == "openai" or self.client_type == "groq":
-            chat_completion = self.client.chat.completions.create(
+        
+    def get_respond(self, prompt: str, temp: float):
+        if self.client_type == "openai":
+            response = self.client.chat.completions.create(
                 model=self.model,
                 messages=[
-                    {"role": "user", "content": prompt}
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
                 ],
-                temperature=0.0,
-                max_tokens=5
+                temperature=temp
             )
-            return chat_completion['choices'][0]['message']['content']
+            return response.choices[0].message.content
         else:
             raise ValueError("client_type not implemented")
+
+    # def completion(self, prompt: str):
+    #     if self.client_type == "openai" or self.client_type == "groq":
+    #         chat_completion = self.client.chat.completions.create(
+    #             model=self.model,
+    #             messages=[
+    #                 {"role": "user", "content": prompt}
+    #             ],
+    #             temperature=0.0,
+    #             max_tokens=5
+    #         )
+    #         return chat_completion['choices'][0]['message']['content']
+    #     else:
+    #         raise ValueError("client_type not implemented")
         
-    def completion_solar(self, prompt: str):
+    def completion(self, prompt: str):
         if self.client_type == "openai":
             response = self.client.chat.completions.create(
                 model=self.model,
@@ -85,11 +104,25 @@ class SelfCheckAPIPrompt:
                 sample = sample.replace("\n", " ") 
                 prompt = self.prompt_template.format(context=sample, sentence=sentence)
                 # generate_text = self.completion(prompt)
-                generate_text = self.completion_solar(prompt)
+                generate_text = self.completion(prompt)
                 score_ = self.text_postprocessing(generate_text)
                 scores[sent_i, sample_i] = score_
         scores_per_sentence = scores.mean(axis=-1)
         return scores_per_sentence
+    
+    def get_sample_passages(
+        self,
+        prompt: str,
+        sample_passages_size = 5, 
+        verbose: bool = False,
+    ):
+        sample_passages = []
+        disable = not verbose
+        
+        for i in tqdm(range(sample_passages_size), disable=disable):
+            sample_passage = self.get_respond(prompt=prompt, temp=1.0)
+            sample_passages.append(sample_passage)
+        return sample_passages
 
     def text_postprocessing(
             self,

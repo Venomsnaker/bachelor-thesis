@@ -11,6 +11,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from transformers import DebertaV2ForSequenceClassification, DebertaV2Tokenizer
 from utils import expand_list1, expand_list2, NLIConfig, LLMPromptConfig
 from modeling_ngram import UnigramModel, NgramModel
+from modeling_selfcheck_apiprompt import SelfCheckAPIPrompt
 
 class SelfCheckBERTScore:
     def __init__(self, default_model="en", rescale_with_baseline=True):

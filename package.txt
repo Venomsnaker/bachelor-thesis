@@ -1,0 +1,9 @@
+SelfCheckGPT
+spacy
+python-dotenv
+transformers
+bert-score
+python-dotenv
+ntlk
+openai
+groq
