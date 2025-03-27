@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 class SelfCheckAPIPrompt:
     def __init__(
         self,
-        client_type = "openai solarsolar",
+        client_type = "openai",
         # model = "gpt-3.5-turbo",
         model = "solar-pro",
         base_url="https://api.upstage.ai/v1/solar",
