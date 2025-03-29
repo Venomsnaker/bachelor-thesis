@@ -1,9 +1,8 @@
-SelfCheckGPT
-spacy
-python-dotenv
-transformers
 bert-score
-python-dotenv
-ntlk
-openai
 groq
+ntlk
+    - en_core_web_sm
+openai
+python-dotenv
+spacy
+transformers
