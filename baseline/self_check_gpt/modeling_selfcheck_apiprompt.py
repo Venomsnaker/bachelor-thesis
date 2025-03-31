@@ -4,7 +4,10 @@ from tqdm import tqdm
 from typing import Dict, List, Set, Tuple, Union
 import numpy as np
 import os
+import time
 from dotenv import load_dotenv
+
+API_CALL_SLEEP = 1
 
 class SelfCheckAPIPrompt:
     def __init__(
@@ -74,6 +77,10 @@ class SelfCheckAPIPrompt:
                 generated_text = self.get_respond(prompt)
                 score = self.text_postprocessing(generated_text)
                 scores[sent_i, sample_passage_idx] = score
+                
+            # Manage API call
+            if num_sentences > 10:
+                time.sleep(API_CALL_SLEEP)
         scores_per_sentence = scores.mean(axis=-1)
         return scores_per_sentence
 
