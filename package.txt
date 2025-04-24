@@ -1,8 +1,0 @@
-bert-score
-groq
-ntlk
-    - en_core_web_sm
-openai
-python-dotenv
-spacy
-transformers
