@@ -1,5 +1,2 @@
 .env
 data/
-annotation/
-generation/
-evaluation/
