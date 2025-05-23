@@ -6,7 +6,7 @@ import pandas as pd
 
 
 def create_books_dataset(save_path):
-    books_data_path = './datasets/books_data/books.csv'
+    books_data_path = 'huy_work/data/book_data/books.csv'
 
     # Open the input CSV file
     with open(books_data_path, 'r', encoding='iso-8859-1') as input_file:
@@ -41,7 +41,7 @@ def create_books_dataset(save_path):
 
 
 if __name__ == '__main__':
-    dataset_save_path = './datasets/books_data/books_filtered.csv'
+    dataset_save_path = 'huy_work/data/interrogate_llm/zero_shot/book_data/books_filtered.csv'
     if not os.path.isfile(dataset_save_path):
         print('Create books all dataset...')
         create_books_dataset(dataset_save_path)

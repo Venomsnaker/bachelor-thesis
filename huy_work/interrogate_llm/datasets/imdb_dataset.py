@@ -6,10 +6,10 @@ import pandas as pd
 
 
 def create_title_cast_dataset(save_path):
-    credit_data_path = './datasets/The-Movies-Dataset/credits.csv'
+    credit_data_path = 'huy_work/data/movie_data/credits.csv'
     credit_data = pd.read_csv(credit_data_path)
 
-    movies_data_path = './datasets/The-Movies-Dataset/movies_metadata.csv'
+    movies_data_path = 'huy_work/data//movie_data/movies_metadata.csv'
     movies_data = pd.read_csv(movies_data_path)
 
     new_data = pd.DataFrame(columns=['id', 'title', 'release_date', 'cast'])
@@ -49,7 +49,7 @@ def create_title_cast_dataset(save_path):
 #
 
 if __name__ == '__main__':
-    dataset_save_path = './datasets/The-Movies-Dataset/title_with_cast.csv'
+    dataset_save_path = 'huy_work/data/interrogate_llm/zero_shot/movie_data/title_with_cast.csv'
     if not os.path.isfile(dataset_save_path):
         print('Create title-cast imdb dataset...')
         create_title_cast_dataset(dataset_save_path)
