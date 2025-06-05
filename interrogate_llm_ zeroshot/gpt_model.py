@@ -5,7 +5,7 @@ class OpenAIClient:
     def __init__(
             self,
             api_key,
-            model = 'gpt-4o-2024-11-20',
+            model = 'o4-mini-2025-04-16',
             retries = 3):
         self.client = OpenAI(api_key=api_key)
         self.model = model
@@ -41,7 +41,8 @@ class OpenAIClient:
 
 class OpenAIEmbeddingClient:
     def __init__(
-            self, api_key,
+            self, 
+            api_key,
             model = 'text-embedding-3-large',):
         self.client = OpenAI(api_key=api_key)
         self.model = model

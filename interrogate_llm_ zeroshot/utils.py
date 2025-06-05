@@ -1,9 +1,15 @@
 import json
 import numpy as np
+import pandas as pd
 
 def load_data_halu_eval(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         data = json.load(file)
+    return data
+
+def load_data_books(file_path):
+    df = pd.read_excel(file_path)
+    data = df.to_dict(orient='records')
     return data
 
 def get_cosine_similarity(original_vec, vecs):
