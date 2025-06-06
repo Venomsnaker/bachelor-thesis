@@ -1,0 +1,5 @@
+Query: You are given an answer. Your task is to generate the original question that was asked to get this answer. Make sure the original question contains the name of the book. Only return the original question.
+
+Answer: "{answer}"
+
+Original Question:

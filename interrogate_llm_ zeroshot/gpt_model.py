@@ -5,13 +5,13 @@ class OpenAIClient:
     def __init__(
             self,
             api_key,
-            model = 'o4-mini-2025-04-16',
+            model = 'gpt-4.1-mini-2025-04-14',
             retries = 3):
         self.client = OpenAI(api_key=api_key)
         self.model = model
         self.retries = retries
 
-    def generate_response(self, prompt: str, temeprature = 0.7, n = 5):
+    def generate_response(self, prompt: str, temeprature = 1, n = 5):
         retries = 3
 
         for attempt in range(retries):
