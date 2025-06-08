@@ -5,7 +5,7 @@ class OpenAIClient:
     def __init__(
             self,
             api_key,
-            model = 'gpt-4.1-mini-2025-04-14',
+            model = 'gpt-4o-mini-2024-07-18',
             retries = 3):
         self.client = OpenAI(api_key=api_key)
         self.model = model
