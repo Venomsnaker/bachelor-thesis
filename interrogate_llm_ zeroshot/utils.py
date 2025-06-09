@@ -1,7 +1,6 @@
 import json
 import os
 import numpy as np
-import pandas as pd
 
 def load_data_json(filepath):
     if not os.path.exists(filepath):
